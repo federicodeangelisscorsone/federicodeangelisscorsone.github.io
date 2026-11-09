@@ -43,6 +43,7 @@
   scroll-behavior: smooth;
 }
 html {
+  font-size: 110%;      /* slightly larger text everywhere */
   background-color: var(--paper);
 }
 body {
@@ -220,6 +221,7 @@ details.drop > .skills {
 
 .body {
 	margin: 0 auto;
+	max-width: 50em; /* keeps lines readable on wide screens */
 	padding-top: 4%;
 	margin-bottom: 10vw;
 }
@@ -241,7 +243,7 @@ details.drop > .skills {
   .body {
   	width: 80%;
   }
-/* Mobile configuration for writings page*/
+/* Mobile configuration */
   .toggle {
   	display: block;
   }
@@ -268,4 +270,19 @@ details.drop > .skills {
     width: 75%;
   }
 
+}
+
+/* Article status labels (scientific contributions page):
+   a soft green tag, the colour of growth and good news */
+.status {
+	display: inline-block;
+	font-size: 0.85em;
+	font-weight: bold;
+	color: #2E5E1F;
+	background-color: #E2EFD3;
+	border: 1px solid #8DBA6F;
+	border-radius: 999px;
+	padding: 0.05em 0.6em;
+	line-height: 1.4;
+	white-space: nowrap;
 }
