@@ -1,20 +1,71 @@
-* {
-  font-family: proxima-nova, sans-serif;
+/* Font: TeX Gyre Schola, the free version of New Century Schoolbook
+   (the text font of the LaTeX package fouriernc). Files in assets/fonts. */
+@font-face {
+  font-family: "TeX Gyre Schola";
+  src: url("assets/fonts/texgyreschola-regular.woff2") format("woff2");
+  font-weight: normal;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TeX Gyre Schola";
+  src: url("assets/fonts/texgyreschola-italic.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TeX Gyre Schola";
+  src: url("assets/fonts/texgyreschola-bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "TeX Gyre Schola";
+  src: url("assets/fonts/texgyreschola-bolditalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --paper: #F7F0DC;      /* warm book-paper yellow */
+  --sand: #F1E6C6;       /* light sand: drop-down boxes */
+  --sand-dark: #E3D19F;  /* hover and borders */
+  --ink: #1C1A17;
+  --muted: #6B6B6B;
+  --rule: #C4C4C4;
+}
+
+* {
+  font-family: "TeX Gyre Schola", "New Century Schoolbook", "Century Schoolbook", serif;
   scroll-behavior: smooth;
 }
+html {
+  background-color: var(--paper);
+}
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+}
 .line {
-	background-color: #C4C4C4;
+	background-color: var(--rule);
 	width: 100%;
 	height:0.5em;
 	margin-bottom: 1.5em;
 }
 h1 {
-  font-family: proxima-nova, sans-serif;;
-  font-weight: 550;
-  font-style: normal;
+  font-weight: bold;
   font-size: 2.5em;
+  line-height: 1.2;
   margin-bottom: 0.3em;
+}
+h2 {
+  font-size: 1.5em;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 dd {
 	margin-bottom:0.6em;
@@ -24,8 +75,8 @@ i {
 }
 
 footer {
-            background-color: #fff;
-            color: black;
+            background-color: transparent;
+            color: var(--ink);
             text-align: center;
             padding: 20px;
             width: 100%;
@@ -35,10 +86,10 @@ footer {
 
 .navigation > a {
 	text-decoration: none;
-	color: #6b6B6B;
+	color: var(--muted);
 }
 .navigation {
-	font-size: min(1.4em, 3vw);
+	font-size: min(1.4em, 3.4vw);
 	margin-bottom: 2.5em;
 }
 .navigation > .active {
@@ -48,9 +99,116 @@ footer {
 	padding-left: 0.3em;
 	padding-right: 0.3em;
 }
-/*p.med {
-	font-size: min(1.1em, 2vw);
-}*/
+
+/* Experiences and education entries */
+.entry {
+	margin-bottom: 1.8em;
+}
+.org {
+	font-weight: bold;
+}
+.role {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-wrap: wrap;
+	column-gap: 1em;
+	margin-top: 0.4em;
+}
+.role > .date {
+	color: var(--muted);
+	white-space: nowrap;
+}
+.entry ul {
+	margin-top: 0.3em;
+	margin-bottom: 0.6em;
+	padding-left: 1.3em;
+}
+.entry li {
+	margin-bottom: 0.2em;
+}
+.note {
+	color: var(--muted);
+	font-style: italic;
+}
+
+/* Drop-down roles (experiences page) */
+details.drop {
+	margin-top: 0.5em;
+}
+details.drop > summary {
+	list-style: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-wrap: wrap;
+	column-gap: 1em;
+	padding: 0.3em 0.7em;
+	background-color: var(--sand);
+	border: 1px solid var(--sand-dark);
+	border-radius: 6px;
+	transition: background-color 0.15s ease;
+}
+details.drop > summary::-webkit-details-marker {
+	display: none;
+}
+details.drop > summary:hover {
+	background-color: var(--sand-dark);
+}
+details.drop[open] > summary {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+details.drop > summary .title::before {
+	content: "▸";
+	display: inline-block;
+	width: 0.9em;
+	margin-right: 0.35em;
+	text-align: center;
+	line-height: 1;
+	transform-origin: 50% 50%;
+	font-style: normal;
+	color: var(--ink);
+	transition: transform 0.2s ease;
+}
+details.drop[open] > summary .title::before {
+	transform: rotate(90deg);
+}
+details.drop > summary .date {
+	color: var(--muted);
+	white-space: nowrap;
+}
+details.drop[open] {
+	border-left: 1px solid var(--sand-dark);
+	border-bottom: 1px solid var(--sand-dark);
+	border-right: 1px solid var(--sand-dark);
+	border-radius: 6px;
+	padding-bottom: 0.1em;
+}
+details.drop > ul,
+details.drop > .note,
+details.drop > .skills {
+	margin-left: 1.3em;
+	margin-right: 0.7em;
+}
+.hint {
+	color: var(--muted);
+	font-size: 0.9em;
+	font-style: italic;
+	margin-top: -0.6em;
+}
+
+.skills {
+	margin-left: 1.1em;
+}
+.skills {
+	font-style: italic;
+	font-size: 0.9em;
+	color: var(--muted);
+	margin-top: 0;
+	margin-bottom: 0.8em;
+}
 
 .body {
 	margin: 0 auto;
@@ -62,17 +220,12 @@ footer {
     flex-direction: row;
     flex-grow: 1;
     justify-content: flex-start; /* Allinea le colonne a sinistra */
-    gap: -4vw; /* Imposta lo spazio tra le colonne */
     align-items: flex-start; /* Assicura che l'allineamento verticale sia in alto */
 }
 
 .row > .col {
     flex-basis: 46%; /* Ogni colonna occupa circa metà della larghezza */
-    margin-right: 0; /* Rimuove il margine destro */
-}
-
-.row > .col:last-child {
-    margin-right: 0; /* Non è più necessario dato che usiamo `gap` */
+    margin-right: 0;
 }
 
 /* For mobile phones: */
@@ -85,13 +238,13 @@ footer {
   	display: block;
   }
   .group {
-  	background-color: #eeeeee;
+  	background-color: #EFE6CC;
   }
   .row {
     flex-direction: column;
   }
   .col > img {
-    width: 60%;
+    width: 80%;
   }
 }
 
@@ -104,7 +257,7 @@ footer {
   	display: none;
   }
   .col > img:first-child {
-    width: 50%;
+    width: 75%;
   }
 
 }
