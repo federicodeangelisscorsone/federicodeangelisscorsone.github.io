@@ -87,6 +87,14 @@ footer {
 .navigation > a {
 	text-decoration: none;
 	color: var(--muted);
+	transition: color 0.15s ease;
+}
+/* Hover, keyboard focus and click use the same look as the current page
+   (the "home" style on the home page) */
+.navigation > a:hover,
+.navigation > a:focus-visible,
+.navigation > a:active {
+	color: #000000;
 }
 .navigation {
 	font-size: min(1.4em, 3.4vw);
